@@ -1,0 +1,7 @@
+{
+  "name": "Administracion de usuarios",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
