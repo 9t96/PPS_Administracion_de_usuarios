@@ -1,0 +1,96 @@
+<ion-content>
+  <div class="hero">
+    <img src="../../assets/svg-adm-usuarios.png" alt="" />
+    <ion-text color="tertiary">
+      <h1 class="title">Administracion de usuarios</h1>
+    </ion-text>
+  </div>
+  <form [formGroup]="loginForm">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        class="form-control"
+        id="email"
+        placeholder="name@mail.com"
+        type="email"
+        formControlName="email"
+        required
+        size=""
+        name="email"
+      />
+      <div class="hiddenItems">
+        <div
+          id="emailFeedback"
+          class="invalid-feedback"
+          *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
+        >
+          <p *ngIf="loginForm.get('email').hasError('required')">
+            Por favor, ingrese su email.
+          </p>
+          <p *ngIf="loginForm.get('email').hasError('email')">
+            Ingrese un correo valido.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        id="password"
+        type="password"
+        class="form-control"
+        required
+        formControlName="password"
+        name="password"
+        placeholder="Contraseña"
+      />
+      <div class="hiddenItems">
+        <div
+          id="passwordFeedback"
+          *ngIf="loginForm.get('password').hasError('required') && (loginForm.get('password').dirty || loginForm.get('password').touched)"
+          class="invalid-feedback"
+        >
+          <p *ngIf="loginForm.get('password').hasError('maxlength')">
+            La contraseña no debe contener mas de 6 caracteres.
+          </p>
+          <p *ngIf="loginForm.get('password').hasError('required')">
+            Por favor, ingrese una constraseña.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ctas">
+      <button
+        (click)="Login()"
+        class="btn"
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!loginForm.valid"
+      >
+        Ingresar
+      </button>
+    </div>
+  </form>
+
+  <div class="test-zone">
+    <button class="btn uno" (click)="testUser(1)" color="success" expand="block">
+      Test User 1
+    </button>
+
+    <button class="btn dos" (click)="testUser(2)" color="dark" expand="block">
+      Test User 2
+    </button>
+    <button class="btn tres" (click)="testUser(3)" color="primary" expand="block">
+      Test User 3
+    </button>
+    <button class="btn cuatro" (click)="testUser(4)" color="light" expand="block">
+      Test User 4
+    </button>
+    <button class="btn cinco" (click)="testUser(5)" color="medium" expand="block">
+      Test User 5
+    </button>
+  </div>
+</ion-content>

@@ -1,13 +1,8 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "administracion.usuarios",
   "appName": "Administracion de usuarios",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
-  "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
-    }
-  },
   "cordova": {}
 }

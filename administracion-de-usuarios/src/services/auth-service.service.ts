@@ -33,6 +33,11 @@ export class AuthServiceService {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
   }
 
+  CreaterUser(email:string,password:string){
+    return this.ngFireAuth.createUserWithEmailAndPassword(email,password);
+  }
+  
+
   // Recover password
   PasswordRecover(passwordResetEmail) {
     return this.ngFireAuth
