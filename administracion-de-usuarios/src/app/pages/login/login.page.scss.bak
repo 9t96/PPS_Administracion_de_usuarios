@@ -8,10 +8,6 @@ ion-content {
 
 }
 
-ion-toolbar{
-  background: #d4d7e3;
-}
-
 .hero {
   display: flex;
   justify-content: center;
@@ -82,8 +78,4 @@ form{
 
   .invalid-feedback{
     display: block;
-  }
-
-  .form-group{
-    margin-bottom: 1rem !important;
   }

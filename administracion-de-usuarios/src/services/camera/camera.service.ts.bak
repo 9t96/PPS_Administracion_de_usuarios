@@ -22,7 +22,7 @@ OpenCamera(){
     // imageData is either a base64 encoded string or a file URI
     // If it's base64 (DATA_URL):
     console.log( "Camera Service Lectura: " + imageData)
-    return imageData;
+    return "data:image/png;base64," +imageData;
    }, (err) => {
     return err;
    });

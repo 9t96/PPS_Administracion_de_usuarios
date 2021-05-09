@@ -1,1 +1,10 @@
-
+ion-tabs{
+    background: var(--ion-color-tertiary);
+    ion-tab-bar{
+        background: var(--ion-color-tertiary);
+        ion-tab-button{
+            background: var(--ion-color-tertiary);
+            --color-selected: black
+        }
+    }
+}

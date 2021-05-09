@@ -1,16 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Listado Usuarios
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Listado Usuarios</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <img class="spinner" *ngIf="showSpinner" src="../../../assets/3dgifmaker21010.gif" alt="">
+  <ion-list *ngIf="!showSpinner">
 
+    <ion-item  color="none" *ngFor="let user of users"> 
+      <ion-avatar slot="start">
+        <img [src]="user.img_src ? user.img_src : '../../../assets/add-user.png'" >
+      </ion-avatar>
+      <ion-label>
+        <h2>{{user.nombre}}</h2>
+        <h3>DNI {{user.documento}}</h3>
+        <h3 style="color: black">{{user.email}}</h3> 
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<ion-fab horizontal="end" vertical="start" style="margin-top:1em">
+  <ion-fab-button (click)="LogOut()"><ion-icon name="log-out-outline"></ion-icon></ion-fab-button>
+</ion-fab>

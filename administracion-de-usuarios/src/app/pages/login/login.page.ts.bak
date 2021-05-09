@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from 'src/services/auth-service.service';
 import { ToastController } from '@ionic/angular';
-import { Usuario } from 'src/clases/usuario';
 
 
 class User{
@@ -16,9 +15,11 @@ class User{
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+
+ 
   user: User;
   loginForm: FormGroup;
-  usersToCreate: any;
 
   get name() {
     return this.loginForm.get("email");
@@ -33,46 +34,23 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loginForm = this.fromBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required])]
-    })
-
-    this.authService.getUsersToCreate().subscribe( data =>{
-      this.usersToCreate = data;
-      console.log(data);
-    })
+      this.loginForm = this.fromBuilder.group({
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    password: ['', Validators.compose([Validators.required, Validators.maxLength(6)])]
+  })
   }
 
 
   Login(){
+
     this.user.email = this.loginForm.get('email').value;
     this.user.password = this.loginForm.get('password').value;
-    let hastocreate = this.usersToCreate.find( user =>{
-      return user.email == this.user.email && user.isCreated == false
+    this.authService.SignIn(this.user.email, this.user.password).then( res =>{
+      this.router.navigate(['tabs']);
     })
-
-    if (hastocreate) {
-      if(this.user.password == hastocreate.password){
-        this.authService.CreaterUser(this.user.email,this.user.password).then(data => {  
-          hastocreate.password = "";
-          this.authService.UpdateState(hastocreate.doc_id, data.user.uid, hastocreate);
-          this.router.navigate(['tabs/tab2']);
-        })
-      }
-    }
-    else{
-      this.authService.SignIn(this.user.email, this.user.password).then( res =>{
-        if (this.user.email == "admin@admin.com") {
-          this.router.navigate(['tabs/tab1']);
-        } else {
-          this.router.navigate(['tabs/tab2']);
-        }
-      })
-      .catch( err =>{ 
-        err.code == "auth/wrong-password" ? this.presentToast("Uno o mas campos son invalidos...") : this.presentToast("Ha ocurrido un error vuelva a intentar.")
-      })
-    }
+    .catch( err =>{ 
+      err.code == "auth/wrong-password" ? this.presentToast("Uno o mas campos son invalidos...") : this.presentToast("Ha ocurrido un error vuelva a intentar.")
+    })
   }
 
   testUser(accountNumber: number){
@@ -86,7 +64,7 @@ export class LoginPage implements OnInit {
         this.loginForm.controls['password'].setValue('222222')
         break;
       case 3:
-        this.loginForm.controls['email'].setValue('usuario@usuario.com') 
+        this.loginForm.controls['email'].setValue('usuerio@usuario.com') 
         this.loginForm.controls['password'].setValue('333333')
         break;
       case 4:
