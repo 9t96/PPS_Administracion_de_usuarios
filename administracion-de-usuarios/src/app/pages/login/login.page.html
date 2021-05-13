@@ -7,11 +7,11 @@
   </div>
   <form [formGroup]="loginForm">
     <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
+      <label for="email" class="form-label">Correo electrónico</label>
       <input
         class="form-control"
         id="email"
-        placeholder="name@mail.com"
+        placeholder="name@correo.com"
         type="email"
         formControlName="email"
         required
@@ -25,7 +25,7 @@
           *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)"
         >
           <p *ngIf="loginForm.get('email').hasError('required')">
-            Por favor, ingrese su email.
+            Por favor, ingrese su correo.
           </p>
           <p *ngIf="loginForm.get('email').hasError('email')">
             Ingrese un correo valido.

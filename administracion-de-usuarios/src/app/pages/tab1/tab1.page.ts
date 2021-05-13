@@ -62,14 +62,14 @@ export class Tab1Page implements OnInit {
         nombre: [
           this.newUser?.nombre,
           Validators.compose([
-            Validators.pattern('[a-zA-Zs]+$'),
+            Validators.pattern('^[ÑA-Zña-z ]*[ÑA-Zña-z]*$'),
             Validators.required,
           ]),
         ],
         apellido: [
           this.newUser?.apellido,
           Validators.compose([
-            Validators.pattern('[a-zA-Zs]+$'),
+            Validators.pattern('^[ÑA-Zña-z ]*[ÑA-Zña-z]*$'),
             Validators.required,
           ]),
         ],
@@ -163,20 +163,20 @@ export class Tab1Page implements OnInit {
       this.newUser.isCreated = false;
       this.newUser.isAdmin = false;
       this.newUser.img_src = this.subioFoto ?  this.formImage : "";
-      this.uploadSrv.loadToStorage(this.newUser);
-      this.userForm.reset();
-this.cleanForm();
-      this.showForm = false;
-      this.showSpinner = true;
-      setTimeout(() => {
-        this.showSpinner = false;
-        this.showSuccess = true;
-      }, 2500);
-      setTimeout(() => {
-        this.showSuccess = false
-        this.showForm = true;
-      }, 6000);
-
+      this.uploadSrv.loadToStorage(this.newUser).then( resp =>{
+        this.userForm.reset();
+        this.cleanForm();
+              this.showForm = false;
+              this.showSpinner = true;
+              setTimeout(() => {
+                this.showSpinner = false;
+                this.showSuccess = true;
+              }, 2500);
+              setTimeout(() => {
+                this.showSuccess = false
+                this.showForm = true;
+              }, 6000);
+      })
   }
 
   cleanForm(){

@@ -7,8 +7,7 @@
         <img [src]="displayImage" alt="" class="round-image" />
       </div>
     </ion-col>
-    <ion-col size="5" style="margin-right: 4em;
-    margin-top: 3em;"> 
+    <ion-col size="5" style="margin-top: 1em;"> 
       <button class="btn btn-md take-photo" style="margin-bottom: 1em;" *ngIf="!subioFoto"(click)="TomarImagen()"><ion-icon name="camera-outline"></ion-icon>Tomar foto</button>
     <button class="btn btn-md pick-photo"*ngIf="!subioFoto" (click)="SubirImagen()"><ion-icon name="cloud-upload-outline"></ion-icon> Subir foto</button>
     <button class="btn btn-md delete-photo" style="margin-top:1em" *ngIf="subioFoto" (click)="CambiarImagen()"><ion-icon name="trash-outline"></ion-icon>Eliminar</button>
@@ -63,7 +62,7 @@
 
     <div class="form-group">
       <label>Documento</label>
-      <input type="text" class="form-control" formControlName="documento" [(ngModel)]="newUser.documento"/>
+      <input type="number" class="form-control" formControlName="documento" [(ngModel)]="newUser.documento"/>
       <div
         *ngIf="userForm.get('documento').invalid && 
     userForm.get('documento').errors && 
@@ -74,12 +73,6 @@
           *ngIf="userForm.get('documento').hasError('required')"
         >
           Este campo es obligatorio
-        </small>
-        <small
-          class="text-danger"
-          *ngIf="userForm.get('documento').hasError('length')"
-        >
-          Por favor, ingrese un documento valido.
         </small>
       </div>
     </div>
@@ -161,7 +154,7 @@
       <button class="btn btn-lg btn-warning btn-block" (click)="ReadQrCode()">
         Escanear DNI
       </button>
-      <button type="submit" class="btn btn-lg btn-success btn-block" (click)="GuardarUsuario()">Guardar</button>
+      <button type="submit"  [disabled]="userForm.invalid" class="btn btn-lg btn-success btn-block" (click)="GuardarUsuario()">Guardar</button>
     </ion-row>
   </form>
   <img *ngIf="showSpinner" src="../../../assets/3dgifmaker21010.gif" alt="" class="spinner">

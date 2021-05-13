@@ -20,7 +20,7 @@ export class UploadService {
   ) {
     this.dbRef = this.db.collection("userList");
   }
-  public loadToStorage(newUser: Usuario) {
+  loadToStorage(newUser: Usuario) {
     this.timeStamp = new Date().getTime();
     this.newName = `${this.timeStamp}.jpeg`;
     let ubicacion = `images/${this.newName}`;
@@ -29,20 +29,20 @@ export class UploadService {
       .ref(ubicacion)
       .putString(image, "data_url")
       .then((res) => {
-        return this.GuardarUsuario(ubicacion, newUser);
+        return this.GuardarUsuario(ubicacion, newUser); 
       })
       .catch((err) => {
         return err;
       });
   }
 
-  public GuardarUsuario(ubicacion: string,newUser: Usuario) {
+  GuardarUsuario(ubicacion: string,newUser: Usuario) {
      return firebase.default.storage()
       .ref(ubicacion)
       .getDownloadURL()
       .then((data) => {
         newUser.img_src = data;
-        this.dbRef.add(newUser);
+        return this.dbRef.add(newUser);
       })
       
     }

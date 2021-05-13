@@ -1,7 +1,7 @@
 .round-image{
     border-radius: 50%;
-    width:120px;
-    height: 120px;
+    width: 7em;
+    height: 7em;
 }
 
 ion-title{
@@ -40,12 +40,10 @@ ion-content{
 .img-preview{
     justify-content: center;
     display: flex;
-    margin-top: 2em;
+    margin-top: 0.5em;
 }
 
 .ctas{
-    justify-content: space-around;
-    margin-bottom: 1em;
     .take-photo{
         background: var(--ion-color-secondary);
     }
